@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-[Serializable]
+
 public class SaveManager
 {
+    public static SaveManager instance;
     private const string PlayerSave = "PlayerSave";
     private GameData _currentData = new GameData();
 
@@ -23,17 +24,40 @@ public class SaveManager
         PlayerPrefs.Save();
     }
 
+    //public void Load()
+    //{
+    //    if (!PlayerPrefs.HasKey(PlayerSave))
+    //    {
+    //        Debug.Log("No saved data found. Creating new GameData.");
+    //        _currentData = new GameData();
+    //    }
+
+    //    string json = PlayerPrefs.GetString(PlayerSave);
+    //    GameData data = JsonUtility.FromJson<GameData>(json);
+    //    _currentData = data;
+    //}
+
     public void Load()
     {
         if (!PlayerPrefs.HasKey(PlayerSave))
         {
             Debug.Log("No saved data found. Creating new GameData.");
             _currentData = new GameData();
+            return; 
         }
 
         string json = PlayerPrefs.GetString(PlayerSave);
         GameData data = JsonUtility.FromJson<GameData>(json);
-        _currentData = data;
+
+        if (data != null)
+        {
+            _currentData = data;
+        }
+        else
+        {
+            Debug.LogError("Failed to load GameData. Setting to new instance.");
+            _currentData = new GameData();
+        }
     }
 
     public void SaveBestResult(float newTime, List<SavePoint> frames)

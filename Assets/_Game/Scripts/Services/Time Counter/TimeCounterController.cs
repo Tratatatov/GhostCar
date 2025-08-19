@@ -1,3 +1,4 @@
+using UnityEngine;
 public class TimeCounterController
 {
     private float _currentTime;
@@ -11,7 +12,7 @@ public class TimeCounterController
         _timeCounterView = timeCounterView;
     }
 
-    public void StartTimer() =>_isCounting = true;
+    public void StartTimer() => _isCounting = true;
 
     public void StopTimer() => _isCounting = false;
 
@@ -32,6 +33,7 @@ public class TimeCounterController
     {
 
         _timeCounterView.SetBestTimeText(value);
+        Debug.Log("Best result was updated");
     }
 }
 

@@ -34,7 +34,7 @@ public class GameplayController : MonoBehaviour
     {
         _playbackController.StopRecording();
         _timeCounterController.StopTimer();
-        _saveManager.Save(_saveManager.CurrentData);
+        //_saveManager.Save(_saveManager.CurrentData);
         _saveManager.SaveBestResult(_timeCounterController.CurrentTime, _playbackController.GetSavePoints());
         _timeCounterController.UpdateBestTime(_saveManager.CurrentData.BestTime);
         Invoke(nameof(RestartRace), 3f);

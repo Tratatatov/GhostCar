@@ -13,4 +13,9 @@ public class DebugManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
+
+    private void Update()
+    {
+        
+    }
 }
